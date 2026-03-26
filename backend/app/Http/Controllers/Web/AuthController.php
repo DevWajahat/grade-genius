@@ -15,7 +15,10 @@ class AuthController extends Controller
     {
 
         try {
+
             User::create($request->validated());
+
+
 
             return response()->json([
                 "status" => "success",
@@ -32,16 +35,13 @@ class AuthController extends Controller
 
     public function login(Login $request)
     {
-        // 1. Check Credentials
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
         $user = Auth::user();
 
-        // 2. Role Check: Does the user's database role match the form they used?
         if ($user->role !== $request->role) {
-            // Log them out immediately if the role doesn't match the portal
             Auth::guard('web')->logout();
 
             return response()->json([
@@ -50,7 +50,6 @@ class AuthController extends Controller
             ], 403);
         }
 
-        // 3. Issue Token
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([

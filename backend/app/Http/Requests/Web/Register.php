@@ -34,7 +34,7 @@ class Register extends FormRequest
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:8|max:16',
             'phone' => 'required|min:7|max:15',
             'role' => 'required|string',

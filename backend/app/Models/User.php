@@ -27,6 +27,7 @@ class User extends Authenticatable
         'role',
         'institute_name',
         'guardian_name',
+        'guardian_phone',
         'guardian_institute'
     ];
 
