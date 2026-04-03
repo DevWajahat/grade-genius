@@ -58,6 +58,7 @@ export interface Hall {
   candidates: string[];
   createdAt: Date;
   status: string;
+  description?: string;
   [key: string]: any;
 }
 

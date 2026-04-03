@@ -71,6 +71,7 @@ export const dummyHalls = [
     candidates: ['candidate-1', 'candidate-2'],
     createdAt: new Date('2024-02-01'),
     status: 'active',
+    description: 'The primary examination hall for mid-term physics and calculus assessments.',
   },
   {
     id: 'hall-2',
@@ -83,6 +84,7 @@ export const dummyHalls = [
     candidates: ['candidate-3', 'candidate-4', 'candidate-5'],
     createdAt: new Date('2024-02-05'),
     status: 'active',
+    description: 'Equipped with the latest software for computer science and programming finals.',
   },
   {
     id: 'hall-3',
@@ -95,6 +97,7 @@ export const dummyHalls = [
     candidates: [],
     createdAt: new Date('2024-02-10'),
     status: 'inactive',
+    description: 'Reserved for biological and chemical experiments and practical examinations.',
   },
 ];
 
