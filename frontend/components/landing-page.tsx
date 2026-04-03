@@ -2,7 +2,8 @@
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowRight, BarChart3, Lock, Users } from 'lucide-react';
+import { ArrowRight, BarChart3, Lock, Users, Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 interface LandingPageProps {
   onAuthClick: (role: 'examiner' | 'candidate') => void;
@@ -13,14 +14,17 @@ export default function LandingPage({ onAuthClick }: LandingPageProps) {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Navigation */}
       <nav className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          {/* Logo Section */}
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">G</span>
             </div>
             <span className="font-bold text-lg text-foreground">Grade Genius</span>
           </div>
-          <div className="flex gap-3">
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-3">
             <Button 
               variant="outline" 
               onClick={() => onAuthClick('candidate')}
@@ -35,27 +39,64 @@ export default function LandingPage({ onAuthClick }: LandingPageProps) {
               Examiner Login
             </Button>
           </div>
+
+          {/* Mobile Navigation (Hamburger) */}
+          <div className="md:hidden flex items-center">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="hover:bg-accent/50">
+                  <Menu className="w-6 h-6 text-foreground/80" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] border-l border-border/50 bg-background/95 backdrop-blur-md pt-16">
+                <div className="flex flex-col gap-6 px-2">
+                  <button 
+                    onClick={() => onAuthClick('candidate')}
+                    className="text-lg font-medium text-foreground hover:text-primary transition-colors flex items-center h-10"
+                  >
+                    Candidate Login
+                  </button>
+                  <button 
+                    onClick={() => onAuthClick('examiner')}
+                    className="text-lg font-medium text-foreground hover:text-primary transition-colors flex items-center h-10"
+                  >
+                    Examiner Login
+                  </button>
+                  
+                  <a href="#" className="text-lg font-medium text-foreground hover:text-primary transition-colors flex items-center h-10">
+                    Features
+                  </a>
+                  <a href="#" className="text-lg font-medium text-foreground hover:text-primary transition-colors flex items-center h-10">
+                    Pricing
+                  </a>
+                  <a href="#" className="text-lg font-medium text-foreground hover:text-primary transition-colors flex items-center h-10">
+                    Contact
+                  </a>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="container mx-auto px-4 py-12 sm:py-20 text-center sm:text-left">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div className="space-y-2">
-              <h1 className="text-5xl sm:text-6xl font-bold text-balance text-foreground">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-balance text-foreground">
                 Intelligent Exam Management for Modern Educators
               </h1>
-              <p className="text-xl text-foreground/70">
+              <p className="text-lg sm:text-xl text-foreground/70">
                 Create, manage, and grade exams with AI-powered insights. Streamline your assessment workflow and empower your candidates.
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-6 pt-6 w-full">
               <Button 
                 size="lg" 
                 onClick={() => onAuthClick('examiner')}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 w-full sm:w-auto"
               >
                 Get Started as Examiner <ArrowRight className="w-5 h-5" />
               </Button>
@@ -63,7 +104,7 @@ export default function LandingPage({ onAuthClick }: LandingPageProps) {
                 size="lg" 
                 variant="outline" 
                 onClick={() => onAuthClick('candidate')}
-                className="border-primary/30 hover:bg-primary/10"
+                className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto"
               >
                 Access Exam Portal
               </Button>
@@ -112,7 +153,7 @@ export default function LandingPage({ onAuthClick }: LandingPageProps) {
           <p className="text-lg text-foreground/60">Everything you need to manage exams efficiently</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <Card className="border-border/50 p-8 hover:shadow-lg transition-shadow">
             <BarChart3 className="w-12 h-12 text-primary mb-4" />
             <h3 className="text-xl font-bold text-foreground mb-2">Advanced Analytics</h3>

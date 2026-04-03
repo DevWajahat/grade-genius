@@ -110,8 +110,8 @@ export default function CandidatePortal() {
     <div className="min-h-screen bg-gray-50/50">
       <CandidateNav />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+      <main className="container mx-auto px-4 py-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-6 w-full">
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
             <p className="text-muted-foreground mt-1">
@@ -199,8 +199,8 @@ export default function CandidatePortal() {
                   </div>
 
                   {/* Avatar Overlap */}
-                  <div className="px-6 relative h-0">
-                    <Avatar className="h-16 w-16 absolute -top-8 right-6 border-4 border-white shadow-sm bg-muted">
+                  <div className="px-6 relative sm:h-0 flex sm:block justify-end -mt-8 sm:mt-0 mb-4 sm:mb-0 z-20">
+                    <Avatar className="h-16 w-16 relative sm:absolute sm:-top-8 sm:right-6 border-4 border-white shadow-sm bg-muted">
                       <AvatarFallback className="bg-primary/10 text-primary text-xl font-bold">
                         {hall.name.substring(0, 1)}
                       </AvatarFallback>

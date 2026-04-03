@@ -215,7 +215,7 @@ function CreateExamContent() {
     return (
         <div className="min-h-screen bg-background">
             <ExaminerNav />
-            <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="mb-8">
                     <Button
                         variant="ghost"
@@ -539,7 +539,7 @@ function CreateExamContent() {
                                     (step === 1 && !title.trim()) ||
                                     (step === 2 && selectedSections.length === 0)
                                 }
-                                className="bg-primary hover:bg-primary/90 min-w-[120px]"
+                                className="bg-primary hover:bg-primary/90 min-w-full"
                             >
                                 Next Step
                                 <ChevronRight className="w-4 h-4 ml-2" />
@@ -548,7 +548,7 @@ function CreateExamContent() {
                             <Button
                                 onClick={handleFinish}
                                 disabled={questions.length === 0}
-                                className="bg-green-600 hover:bg-green-700 text-white min-w-[150px]"
+                                className="bg-green-600 hover:bg-green-700 text-white min-w-full"
                             >
                                 <Check className="w-4 h-4 mr-2" />
                                 {editExamId ? 'Save Changes' : 'Finish & Create Exam'}

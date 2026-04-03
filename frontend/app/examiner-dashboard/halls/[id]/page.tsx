@@ -278,7 +278,7 @@ export default function HallDetailsPage({ params }: HallDetailsPageProps) {
             {/* Performance Stats */}
             <Card className="border-border/50 p-6">
               <h3 className="text-lg font-bold text-foreground mb-4">Performance Summary</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="p-4 bg-muted rounded-lg">
                   <p className="text-sm text-foreground/60 mb-1">Average Score</p>
                   <p className="text-2xl font-bold text-primary">

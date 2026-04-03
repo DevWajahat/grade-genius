@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { dummyUsers } from '@/lib/dummy-data';
-import { LogOut, Settings, HelpCircle, BookOpen } from 'lucide-react';
+import { LogOut, Settings, HelpCircle, BookOpen, Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 export default function CandidateNav() {
   const candidate = dummyUsers.candidate1;
@@ -17,19 +18,47 @@ export default function CandidateNav() {
 
   return (
     <nav className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">G</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        {/* Left Section (Mobile Nav + Logo) */}
+        <div className="flex items-center gap-4">
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex items-center">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="hover:bg-accent/50 -ml-2">
+                  <Menu className="w-5 h-5 text-foreground/70" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-full sm:w-full border-r border-border/50 bg-background/95 backdrop-blur-md">
+                <div className="flex flex-col gap-6 mt-6">
+                  <a href="/candidate-portal" className="text-foreground/70 hover:text-foreground font-medium text-lg transition-colors flex items-center gap-2">
+                    <BookOpen className="w-5 h-5" />
+                    Exams
+                  </a>
+                  <a href="#" className="text-foreground/70 hover:text-foreground font-medium text-lg transition-colors flex items-center gap-2">
+                    Results
+                  </a>
+                  <a href="#" className="text-foreground/70 hover:text-foreground font-medium text-lg transition-colors flex items-center gap-2">
+                    Progress
+                  </a>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
-          <div className="flex flex-col">
-            <span className="font-bold text-lg text-foreground">Grade Genius</span>
-            <span className="text-xs text-foreground/50">Candidate Portal</span>
+          
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">G</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-lg text-foreground">Grade Genius</span>
+              <span className="text-xs text-foreground/50">Candidate Portal</span>
+            </div>
           </div>
         </div>
 
-        {/* Navigation Links */}
+        {/* Navigation Links - Desktop */}
         <div className="hidden md:flex gap-8">
           <a href="/candidate-portal" className="text-foreground/70 hover:text-foreground font-medium text-sm transition-colors flex items-center gap-2">
             <BookOpen className="w-4 h-4" />

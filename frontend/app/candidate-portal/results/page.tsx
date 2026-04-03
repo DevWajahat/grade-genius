@@ -116,7 +116,7 @@ export default function ResultsPage() {
             </div>
 
             {/* Statistics */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8 pt-8 border-t border-border/30">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 pt-8 border-t border-border/30">
               <div className="text-center">
                 <p className="text-foreground/60 text-sm mb-2">Correct Answers</p>
                 <p className="text-3xl font-bold text-primary">{currentResult.correctAnswers}</p>

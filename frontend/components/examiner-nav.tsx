@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { dummyUsers } from '@/lib/dummy-data';
-import { LogOut, Settings, HelpCircle } from 'lucide-react';
+import { LogOut, Settings, HelpCircle, Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 export default function ExaminerNav() {
   const examiner = dummyUsers.examiner1;
@@ -18,26 +19,56 @@ export default function ExaminerNav() {
   return (
     <nav className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">G</span>
+        {/* Left Section (Mobile Nav + Logo) */}
+        <div className="flex items-center gap-4">
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex items-center">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="hover:bg-accent/50 -ml-2">
+                  <Menu className="w-5 h-5 text-foreground/70" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-full sm:w-full border-r border-border/50 bg-background/95 backdrop-blur-md">
+                <div className="flex flex-col gap-6 mt-6">
+                  <a href="/examiner-dashboard" className="text-foreground/70 hover:text-foreground font-medium text-lg transition-colors">
+                    Dashboard
+                  </a>
+                  <a href="/examiner-dashboard/exams" className="text-foreground/70 hover:text-foreground font-medium text-lg transition-colors">
+                    Exams
+                  </a>
+                  <a href="/examiner-dashboard/halls" className="text-foreground/70 hover:text-foreground font-medium text-lg transition-colors">
+                    Halls
+                  </a>
+                  <a href="#" className="text-foreground/70 hover:text-foreground font-medium text-lg transition-colors">
+                    Analytics
+                  </a>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
-          <div className="flex flex-col">
-            <span className="font-bold text-lg text-foreground">Grade Genius</span>
-            <span className="text-xs text-foreground/50">Teacher Portal</span>
+          
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">G</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-lg text-foreground">Grade Genius</span>
+              <span className="text-xs text-foreground/50">Teacher Portal</span>
+            </div>
           </div>
         </div>
 
-        {/* Navigation Links */}
+        {/* Navigation Links - Desktop */}
         <div className="hidden md:flex gap-8">
           <a href="/examiner-dashboard" className="text-foreground/70 hover:text-foreground font-medium text-sm transition-colors">
             Dashboard
           </a>
-          <a href="#" className="text-foreground/70 hover:text-foreground font-medium text-sm transition-colors">
+          <a href="/examiner-dashboard/exams" className="text-foreground/70 hover:text-foreground font-medium text-sm transition-colors">
             Exams
           </a>
-          <a href="#" className="text-foreground/70 hover:text-foreground font-medium text-sm transition-colors">
+          <a href="/examiner-dashboard/halls" className="text-foreground/70 hover:text-foreground font-medium text-sm transition-colors">
             Halls
           </a>
           <a href="#" className="text-foreground/70 hover:text-foreground font-medium text-sm transition-colors">

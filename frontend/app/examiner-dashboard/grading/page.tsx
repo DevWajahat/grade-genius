@@ -77,7 +77,7 @@ export default function GradingPage() {
           <p className="text-foreground/60 mt-2">Review and grade candidate submissions with split-screen interface</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* Left Panel: Attempt List */}
           <Card className="border-border/50 p-6 h-fit">
             <h2 className="text-lg font-bold text-foreground mb-4">Submissions</h2>

@@ -18,11 +18,54 @@ import { dummyHalls, dummyExams, dummyUsers, dummySections } from '@/lib/dummy-d
 import { Plus, Search, Copy, Eye, BarChart3, Users, ArrowLeft, TrendingUp, Trophy, CheckCircle2, MoreVertical, Trash2, Edit } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+// Interfaces for dummy data to clear TypeScript errors
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role?: string;
+  [key: string]: any;
+}
+
+export interface Section {
+  id: string;
+  title: string;
+  description?: string;
+  questions: any[];
+  [key: string]: any;
+}
+
+export interface Exam {
+  id: string;
+  hallId: string;
+  title: string;
+  description: string;
+  duration: number;
+  totalMarks: number;
+  sections: Section[];
+  status: string;
+  [key: string]: any;
+}
+
+export interface Hall {
+  id: string;
+  name: string;
+  code: string;
+  hallCode: string;
+  capacity: number;
+  occupied: number;
+  examinerId: string;
+  candidates: string[];
+  createdAt: Date;
+  status: string;
+  [key: string]: any;
+}
+
 export default function ExaminerDashboard() {
   const router = useRouter();
   const [searchHall, setSearchHall] = useState('');
   const [userEmail, setUserEmail] = useState('');
-  const [halls, setHalls] = useState(dummyHalls);
+  const [halls, setHalls] = useState<Hall[]>(dummyHalls as unknown as Hall[]);
   const [showCreateHall, setShowCreateHall] = useState(false);
   const [newHallName, setNewHallName] = useState('');
   const [newHallCapacity, setNewHallCapacity] = useState('50');
@@ -33,9 +76,9 @@ export default function ExaminerDashboard() {
   const [examToDelete, setExamToDelete] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const [exams, setExams] = useState(dummyExams); // Declare the setExams variable
+  const [exams, setExams] = useState<Exam[]>(dummyExams as unknown as Exam[]); // Declare the setExams variable
 
-  const examiner = dummyUsers.examiner1;
+  const examiner: User = dummyUsers.examiner1 as unknown as User;
 
   useEffect(() => {
     const email = sessionStorage.getItem('userEmail');
@@ -137,9 +180,9 @@ export default function ExaminerDashboard() {
       <div className="min-h-screen bg-background">
         <ExaminerNav />
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="container mx-auto px-4 py-8">
           {/* Header with back button */}
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 w-full">
             <div className="flex items-center gap-4">
               <Button
                 variant="outline"
@@ -162,7 +205,7 @@ export default function ExaminerDashboard() {
 
           {/* Tabs for Hall Details */}
           <Tabs value={activeHallTab} onValueChange={setActiveHallTab} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 h-auto gap-2 sm:gap-0 p-1 bg-muted rounded-lg">
               <TabsTrigger value="exams">Exams</TabsTrigger>
               <TabsTrigger value="candidates">Candidates</TabsTrigger>
               <TabsTrigger value="analytics">Analytics</TabsTrigger>
@@ -254,7 +297,7 @@ export default function ExaminerDashboard() {
 
             {/* Analytics Tab */}
             <TabsContent value="analytics">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                 <Card className="border-border/50 p-6">
                   <div className="flex items-start justify-between">
                     <div>
@@ -320,9 +363,9 @@ export default function ExaminerDashboard() {
     <div className="min-h-screen bg-background">
       <ExaminerNav />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 w-full">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Examiner Dashboard</h1>
             <p className="text-foreground/60 mt-2">Manage your examination halls and exams</p>
@@ -372,7 +415,7 @@ export default function ExaminerDashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           <Card className="border-border/50 p-6">
             <div className="flex items-start justify-between">
               <div>
