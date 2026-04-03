@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Web;
+namespace App\Http\Requests\Examiner;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class Register extends FormRequest
+class StoreExamHall extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,6 +15,7 @@ class Register extends FormRequest
     {
         return true;
     }
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
@@ -24,6 +25,7 @@ class Register extends FormRequest
         ], 422));
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -32,15 +34,7 @@ class Register extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|max:16',
-            'phone' => 'required|min:7|max:15',
-            'role' => 'required|string',
-            'institute_name' => 'required_if:role,examiner|string|max:255',
-            'guardian_name' => 'required_unless:role,examiner|string|max:255',
-            'guardian_phone' => 'required_unless:role,examiner|string|min:7|max:15'
+            'name' => 'string|required|max:255',
         ];
     }
 }
